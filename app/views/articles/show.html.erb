@@ -1,0 +1,20 @@
+<section class="flex flex-col items-center gap-5 py-5">
+  <h2 class="text-indigo-600 text-4xl">Article Details</h2>
+
+  <p>Title: <%= @article.title %></p>
+  <p>Description: <%= @article.description %></p>
+
+  <p><%= link_to 'Edit', edit_article_path(@article), class: 'text-blue-500 border-[1px] border-blue-500 p-2 rounded-lg' %></p>
+  <p>
+    <%=
+      link_to 'Delete',
+              article_path(@article),
+              data: {
+                turbo_method: :delete,
+                turbo_confirm: 'Are you sure?',
+              },
+              class: 'text-red-500 border-[1px] border-red-500 p-2 rounded-lg'
+    %>
+  </p>
+  <p><%= link_to 'Return to Articles', articles_path, class: 'text-green-500 border-[1px] border-green-500 p-2 rounded-lg' %></p>
+</section>

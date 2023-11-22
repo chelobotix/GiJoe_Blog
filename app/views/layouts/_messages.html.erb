@@ -1,0 +1,3 @@
+<%  flash.each do |k,v|%>
+  <p class="<%= k == 'notice' ? 'bg-green-400' : 'bg-red-400' %>"><%= v %></p>
+<% end %>

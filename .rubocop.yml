@@ -1,0 +1,22 @@
+require:
+  - rubocop-rails
+
+AllCops:
+  EnabledByDefault: true
+  TargetRubyVersion: 3.2.2
+  Exclude:
+    - '**/db/**/*'
+    - '**/config/**/*'
+    - '**/bin/**/*'
+    - 'config.ru'
+Style/Documentation:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/Copyright:
+  Enabled: false
+
+Lint/ConstantResolution:
+  Enabled: false
