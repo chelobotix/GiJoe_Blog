@@ -19,7 +19,7 @@
     </div>
 
     <div class="flex justify-center items-center">
-      <%= f.submit "Sign up", class: 'px-5 py-3 bg-blue-600 text-white rounded-lg border-[1px] border-white' %>
+      <%= f.submit(@user.new_record? ? "Sign up": "Update Account", class: 'px-5 py-3 bg-blue-600 text-white rounded-lg border-[1px] border-white') %>
     </div>
   <%end%>
 </div>
