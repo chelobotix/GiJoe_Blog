@@ -20,3 +20,6 @@ Style/Copyright:
 
 Lint/ConstantResolution:
   Enabled: false
+
+Rails/UniqueValidationWithoutIndex:
+  Enabled: false
