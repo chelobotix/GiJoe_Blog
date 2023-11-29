@@ -66,3 +66,6 @@ end
 gem 'rubocop', '~> 1.57', '>= 1.57.2'
 
 gem 'rubocop-rails', '~> 2.22', '>= 2.22.1'
+
+# BCrypt
+gem 'bcrypt', '~> 3.1', '>= 3.1.12'
