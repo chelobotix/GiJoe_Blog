@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   get 'home/index'
   root 'home#index'
   resources :articles
-  resources :users
+  get 'signup', to: "users#new"
+  resources :users, except: [:new]
+
 
   get "up" => "rails/health#show", as: :rails_health_check
 
