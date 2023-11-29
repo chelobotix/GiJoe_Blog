@@ -1,6 +1,7 @@
 <section class="flex flex-col items-center gap-5 py-5">
   <h2 class="text-indigo-600 text-4xl">Article Details</h2>
 
+  <p>Author: <%= @article.user.username %></p>
   <p>Title: <%= @article.title %></p>
   <p>Description: <%= @article.description %></p>
 

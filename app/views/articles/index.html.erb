@@ -3,7 +3,7 @@
   <ul class="flex flex-col gap-10 items-center w-10/12">
     <% @articles.each do |article|%>
       <li class="bg-gray-100 drop-shadow-xl w-full p-5 flex flex-col items-center justify-center">
-        <p>by Marcelo</p>
+        <p><%= article.user.username %></p>
         <hr class="h-[1px] w-10/12 my-3 bg-gray-500 border-0" />
         <p class="text-green-500"><%= article.title %></p>
         <p><%= article.description %></p>

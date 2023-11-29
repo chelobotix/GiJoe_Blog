@@ -11,4 +11,11 @@ class User < ApplicationRecord
             format: { with: VALID_EMAIL_REGEX }
 
   has_many :articles, dependent: :destroy
+
+  before_save :mail_lowercase
+
+  # mail_lowercase
+  def mail_lowercase
+    self.email = email.downcase
+  end
 end
