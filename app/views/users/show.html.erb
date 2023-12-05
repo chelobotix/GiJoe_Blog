@@ -1,0 +1,15 @@
+<section class="flex flex-col items-center gap-5 py-5">
+  <h2 class="text-indigo-600 text-4xl">User Profile</h2>
+
+  <%= image_tag(gravatar(@user, 200), alt: @user.username, class: 'rounded-md') %>
+  <p>Username: <%= @user.username %></p>
+  <p>Email: <%= @user.email %></p>
+  <p><%= link_to 'Edit Profile', edit_user_path(@user), class: 'text-blue-500 border-[1px] border-blue-500 p-2 rounded-lg' %></p>
+
+  <h2 class="text-indigo-600 text-4xl">Articles</h2>
+  <%= render "articles/article" %>
+
+  <div class="flickr_pagination">
+    <%= will_paginate @articles, :container => false %>
+  </div>
+</section>

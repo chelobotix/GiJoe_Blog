@@ -1,0 +1,24 @@
+<section class="flex flex-col gap-5 items-center py-5">
+  <h2 class="text-indigo-600 text-4xl">Joes(Cobra) Users</h2>
+  <ul class="flex flex-col gap-10 items-center w-10/12">
+  <% @users.each do |user|%>
+    <li class="bg-gray-100 drop-shadow-xl w-full p-5 flex flex-col items-center justify-center">
+      <%= image_tag(gravatar(user, 150), alt: user.username, class: 'rounded-md') %>
+      <p><%= user.username %></p>
+      <p><%= pluralize(user.articles.count, "article") %></p>
+      <hr class="h-[1px] w-10/12 my-3 bg-gray-500 border-0" />
+      <p class="text-green-500"><%= user.email %></p>
+      <div class="flex gap-5 py-5   ">
+        <%= link_to 'View Profile', user, class: 'text-green-500 border-[1px] border-green-500 p-2 rounded-lg' %>
+        <%= link_to 'Edit Profile', edit_user_path(user), class: 'text-blue-500 border-[1px] border-blue-500 p-2 rounded-lg' %>
+      </div>
+      <p>Joined at <%= time_ago_in_words(user.created_at) %>, ago</p>
+    </li>
+  <%end%>
+</ul>
+
+<div class="flickr_pagination">
+  <%= will_paginate @users, :container => false %>
+</div>
+
+</section>

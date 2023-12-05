@@ -1,30 +1,10 @@
 <section class="flex flex-col gap-5 items-center py-5">
   <h2 class="text-indigo-600 text-4xl">Articles</h2>
-  <ul class="flex flex-col gap-10 items-center w-10/12">
-    <% @articles.each do |article|%>
-      <li class="bg-gray-100 drop-shadow-xl w-full p-5 flex flex-col items-center justify-center">
-        <p><%= article.user.username %></p>
-        <hr class="h-[1px] w-10/12 my-3 bg-gray-500 border-0" />
-        <p class="text-green-500"><%= article.title %></p>
-        <p><%= article.description %></p>
-        <div class="flex gap-5 py-5   ">
-          <%= link_to 'Show', article_path(article), class: 'text-green-500 border-[1px] border-green-500 p-2 rounded-lg' %>
-          <%= link_to 'Edit', edit_article_path(article), class: 'text-blue-500 border-[1px] border-blue-500 p-2 rounded-lg' %>
-          <%=
-            link_to 'Delete',
-                    article_path(article),
-                    data: {
-                      turbo_method: :delete,
-                      turbo_confirm: 'Are you sure?',
-                    },
-                    class: 'text-red-500 border-[1px] border-red-500 p-2 rounded-lg'
-          %>
-        </div>
-      </li>
-    <%end%>
-  </ul>
+    <%= render "article" %>
+  <p><%= link_to 'Create new article', new_article_path %></p>
 
-  <p>
-    <%= link_to 'Create new article', new_article_path %>
-  </p>
+    <div class="flickr_pagination">
+      <%= will_paginate @articles, :container => false %>
+    </div>
+
 </section>

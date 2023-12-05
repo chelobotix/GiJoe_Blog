@@ -1,5 +1,15 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[edit update]
+  before_action :set_user, only: %i[show edit update]
+  # index
+  def index
+    @users = User.paginate(page: params[:page], per_page: 5)
+  end
+
+  # new
+  def show
+    @articles = @user.articles.paginate(page: params[:page], per_page: 3)
+  end
+
   # new
   def new
     @user = User.new
@@ -13,7 +23,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       flash[:notice] = "User #{@user.username} has been created"
-      redirect_to(articles_path)
+      redirect_to(users_path)
     else
       render(:new, status: :unprocessable_entity)
     end
@@ -23,7 +33,7 @@ class UsersController < ApplicationController
   def update
     if @user.update(user_params)
       flash[:notice] = 'User has been updated'
-      redirect_to(articles_path)
+      redirect_to(@user)
     else
       render(:edit, status: :unprocessable_entity)
     end

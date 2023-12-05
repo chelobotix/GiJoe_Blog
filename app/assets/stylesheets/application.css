@@ -13,6 +13,7 @@
  *= require_tree .
  *= require_self
  */
+@import 'will_paginate';
 
 .hero {
   background-image: url('hero-bg.jpg');

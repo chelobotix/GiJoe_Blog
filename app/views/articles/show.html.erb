@@ -1,21 +1,30 @@
-<section class="flex flex-col items-center gap-5 py-5">
-  <h2 class="text-indigo-600 text-4xl">Article Details</h2>
+<section class="flex justify-center gap-5 py-5">
+  <article class="w-10/12 bg-gray-200 rounded-md p-5 flex flex-col items-center justify-center gap-5">
+    <h2 class="text-indigo-600 text-4xl"><%= @article.title %></h2>
 
-  <p>Author: <%= @article.user.username %></p>
-  <p>Title: <%= @article.title %></p>
-  <p>Description: <%= @article.description %></p>
+    <%= link_to @article.user do%>
+      <div class="flex flex-col items-center">
+        <%= image_tag(gravatar(@article.user, 50), alt: @article.user.username, class: 'rounded-md') %>
+        <p>By: <%= @article.user.username %></p>
+      </div>
+    <% end %>
 
-  <p><%= link_to 'Edit', edit_article_path(@article), class: 'text-blue-500 border-[1px] border-blue-500 p-2 rounded-lg' %></p>
-  <p>
-    <%=
-      link_to 'Delete',
-              article_path(@article),
-              data: {
-                turbo_method: :delete,
-                turbo_confirm: 'Are you sure?',
-              },
-              class: 'text-red-500 border-[1px] border-red-500 p-2 rounded-lg'
-    %>
-  </p>
-  <p><%= link_to 'Return to Articles', articles_path, class: 'text-green-500 border-[1px] border-green-500 p-2 rounded-lg' %></p>
+    <p>Description: <%= @article.description %></p>
+
+    <div class="flex gap-3">
+      <p><%= link_to 'Edit', edit_article_path(@article), class: 'text-blue-500 border-[1px] border-blue-500 p-2 rounded-lg' %></p>
+      <p>
+        <%=
+          link_to 'Delete',
+                  article_path(@article),
+                  data: {
+                    turbo_method: :delete,
+                    turbo_confirm: 'Are you sure?',
+                  },
+                  class: 'text-red-500 border-[1px] border-red-500 p-2 rounded-lg'
+        %>
+      </p>
+    </div>
+      <p><%= link_to 'Return to Articles', articles_path, class: 'text-green-500 border-[1px] border-green-500 p-2 rounded-lg' %></p>
+  </article>
 </section>

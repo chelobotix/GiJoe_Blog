@@ -5,10 +5,10 @@ AllCops:
   EnabledByDefault: true
   TargetRubyVersion: 3.2.2
   Exclude:
-    - '**/db/**/*'
-    - '**/config/**/*'
-    - '**/bin/**/*'
-    - 'config.ru'
+    - "**/db/**/*"
+    - "**/config/**/*"
+    - "**/bin/**/*"
+    - "config.ru"
 Style/Documentation:
   Enabled: false
 
@@ -22,4 +22,13 @@ Lint/ConstantResolution:
   Enabled: false
 
 Rails/UniqueValidationWithoutIndex:
+  Enabled: false
+
+Metrics/AbcSize:
+  Enabled: false
+
+Rails/I18nLocaleTexts:
+  Enabled: false
+
+Style/GuardClause:
   Enabled: false
