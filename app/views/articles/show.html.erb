@@ -11,20 +11,40 @@
 
     <p>Description: <%= @article.description %></p>
 
-    <div class="flex gap-3">
-      <p><%= link_to 'Edit', edit_article_path(@article), class: 'text-blue-500 border-[1px] border-blue-500 p-2 rounded-lg' %></p>
-      <p>
-        <%=
-          link_to 'Delete',
-                  article_path(@article),
-                  data: {
-                    turbo_method: :delete,
-                    turbo_confirm: 'Are you sure?',
-                  },
-                  class: 'text-red-500 border-[1px] border-red-500 p-2 rounded-lg'
-        %>
+    <% if logged_in? && current_user == @article.user %>
+      <div class="flex gap-3">
+        <p>
+          <%=
+            link_to 'Edit',
+                    edit_article_path(@article),
+                    class: 'text-blue-500 border-[1px] border-blue-500 p-2 rounded-lg'
+          %>
+        </p>
+        <p>
+          <%=
+            link_to 'Delete',
+                    article_path(@article),
+                    data: {
+                      turbo_method: :delete,
+                      turbo_confirm: 'Are you sure?',
+                    },
+                    class: 'text-red-500 border-[1px] border-red-500 p-2 rounded-lg'
+          %>
+        </p>
+      </div>
+    <% end %>
+    <div>
+      <p class="text-sm text-gray-400">Created <%= time_ago_in_words(@article.created_at) %> ago</p>
+      <p class="text-sm text-gray-400">
+        <%= "Edited #{time_ago_in_words(@article.updated_at)} ago" if @article.updated_at != @article.created_at %>
       </p>
     </div>
-      <p><%= link_to 'Return to Articles', articles_path, class: 'text-green-500 border-[1px] border-green-500 p-2 rounded-lg' %></p>
+    <p>
+      <%=
+        link_to 'Return to Articles',
+                articles_path,
+                class: 'text-green-500 border-[1px] border-green-500 p-2 rounded-lg'
+      %>
+    </p>
   </article>
 </section>
