@@ -32,3 +32,6 @@ Rails/I18nLocaleTexts:
 
 Style/GuardClause:
   Enabled: false
+
+Style/MissingElse:
+  Enabled: false

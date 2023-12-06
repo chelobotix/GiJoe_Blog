@@ -1,5 +1,7 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: %i[show edit update destroy]
+  before_action :require_user, except: %i[index show]
+  before_action :require_same_user, only: %i[edit update destroy]
   # index
   def index
     @articles = Article.paginate(page: params[:page], per_page: 5)
@@ -55,5 +57,14 @@ class ArticlesController < ApplicationController
   # article params
   def article_params
     params.require(:article).permit(:title, :description)
+  end
+
+  # require_same_user
+  def require_same_user
+    unless current_user == @article.user
+      flash[:alert] = 'You cant edit this article'
+      redirect_to(@article)
+
+    end
   end
 end

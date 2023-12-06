@@ -12,6 +12,17 @@
                 class: 'text-blue-500 border-[1px] border-blue-500 p-2 rounded-lg'
       %>
     </p>
+    <p>
+      <%=
+        link_to 'Delete Profile',
+                user_path(@user),
+                data: {
+                  turbo_method: :delete,
+                  turbo_confirm: 'Are you sure?',
+                },
+                class: 'text-red-500 border-[1px] border-red-500 p-2 rounded-lg'
+      %>
+    </p>
   <% end %>
 
   <h2 class="text-indigo-600 text-4xl">Articles</h2>

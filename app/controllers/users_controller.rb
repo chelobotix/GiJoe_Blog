@@ -1,11 +1,14 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[show edit update]
+  before_action :set_user, only: %i[show edit update destroy]
+  before_action :require_user, except: %i[index show new create]
+  before_action :require_same_user, only: %i[edit update destroy]
+  before_action :already_singed_up, only: %i[new]
   # index
   def index
     @users = User.paginate(page: params[:page], per_page: 5)
   end
 
-  # new
+  # show
   def show
     @articles = @user.articles.paginate(page: params[:page], per_page: 3)
   end
@@ -22,8 +25,8 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      flash[:notice] = "User #{@user.username} has been created"
-      redirect_to(users_path)
+      flash[:notice] = "User #{@user.username} has been created, please log in"
+      redirect_to(login_path)
     else
       render(:new, status: :unprocessable_entity)
     end
@@ -39,6 +42,14 @@ class UsersController < ApplicationController
     end
   end
 
+  # destroy
+  def destroy
+    @user.destroy!
+    session[:user_id] = nil
+    flash[:notice] = 'Account and all associated articles have been deleted'
+    redirect_to(root_path)
+  end
+
   private
 
   # get user
@@ -49,5 +60,23 @@ class UsersController < ApplicationController
   # user params
   def user_params
     params.require(:user).permit(:username, :email, :password)
+  end
+
+  # require_same_user
+  def require_same_user
+    unless current_user == @user
+      flash[:alert] = 'You cant edit this user'
+      redirect_to(@user)
+
+    end
+  end
+
+  # require_same_user
+  def already_singed_up
+    if logged_in?
+      flash[:alert] = 'You have already signed up'
+      redirect_to(current_user)
+
+    end
   end
 end
