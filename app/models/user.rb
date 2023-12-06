@@ -18,4 +18,7 @@ class User < ApplicationRecord
   def mail_lowercase
     self.email = email.downcase
   end
+
+  # authentication
+  has_secure_password
 end

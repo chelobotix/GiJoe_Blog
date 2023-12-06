@@ -1,70 +1,82 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[ show edit update destroy ]
-
-  # GET /users or /users.json
+  before_action :set_user, only: %i[show edit update destroy]
+  before_action :require_user, except: %i[index show new create]
+  before_action :require_same_user, only: %i[edit update destroy]
+  before_action :already_singed_up, only: %i[new]
+  # index
   def index
-    @users = User.all
+    @users = User.paginate(page: params[:page], per_page: 5)
   end
 
-  # GET /users/1 or /users/1.json
+  # show
   def show
+    @articles = @user.articles.paginate(page: params[:page], per_page: 3)
   end
 
-  # GET /users/new
+  # new
   def new
     @user = User.new
   end
 
-  # GET /users/1/edit
-  def edit
-  end
+  # edit
+  def edit; end
 
-  # POST /users or /users.json
+  # create
   def create
     @user = User.new(user_params)
-
-    respond_to do |format|
-      if @user.save
-        format.html { redirect_to user_url(@user), notice: "User was successfully created." }
-        format.json { render :show, status: :created, location: @user }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
+    if @user.save
+      flash[:notice] = "User #{@user.username} has been created, please log in"
+      redirect_to(login_path)
+    else
+      render(:new, status: :unprocessable_entity)
     end
   end
 
-  # PATCH/PUT /users/1 or /users/1.json
+  # update
   def update
-    respond_to do |format|
-      if @user.update(user_params)
-        format.html { redirect_to user_url(@user), notice: "User was successfully updated." }
-        format.json { render :show, status: :ok, location: @user }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
+    if @user.update(user_params)
+      flash[:notice] = 'User has been updated'
+      redirect_to(@user)
+    else
+      render(:edit, status: :unprocessable_entity)
     end
   end
 
-  # DELETE /users/1 or /users/1.json
+  # destroy
   def destroy
     @user.destroy!
-
-    respond_to do |format|
-      format.html { redirect_to users_url, notice: "User was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    session[:user_id] = nil
+    flash[:notice] = 'Account and all associated articles have been deleted'
+    redirect_to(root_path)
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_user
-      @user = User.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def user_params
-      params.require(:user).permit(:name, :email)
+  # get user
+  def set_user
+    @user = User.find(params[:id])
+  end
+
+  # user params
+  def user_params
+    params.require(:user).permit(:username, :email, :password)
+  end
+
+  # require_same_user
+  def require_same_user
+    unless current_user == @user
+      flash[:alert] = 'You cant edit this user'
+      redirect_to(@user)
+
     end
+  end
+
+  # require_same_user
+  def already_singed_up
+    if logged_in?
+      flash[:alert] = 'You have already signed up'
+      redirect_to(current_user)
+
+    end
+  end
 end

@@ -1,0 +1,10 @@
+<% if obj.errors.any?  %>
+  <div class="bg-red-300 w-10/12 p-5">
+    <p class="text-red-800">The following errors prevented the new <%= obj.class %> being created</p>
+    <ul class="list-disc pl-10 text-red-700">
+      <% obj.errors.full_messages.each do |message|  %>
+        <li><%= message %></li>
+      <% end  %>
+    </ul>
+  </div>
+<% end  %>

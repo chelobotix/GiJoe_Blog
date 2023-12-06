@@ -1,0 +1,37 @@
+<ul class="flex flex-col gap-10 items-center w-10/12">
+  <% @articles.each do |article|%>
+    <li class="bg-gray-100 drop-shadow-xl w-full p-5 flex flex-col items-center justify-center">
+      <%= link_to article.user.username, user_path(article.user) %>
+      <hr class="h-[1px] w-10/12 my-3 bg-gray-500 border-0" />
+      <p class="text-green-500"><%= article.title %></p>
+      <p><%= article.description %></p>
+      <div class="flex gap-5 py-5   ">
+        <%=
+          link_to 'Show', article_path(article), class: 'text-green-500 border-[1px] border-green-500 p-2 rounded-lg'
+        %>
+        <% if logged_in? && current_user == article.user %>
+          <%=
+            link_to 'Edit',
+                    edit_article_path(article),
+                    class: 'text-blue-500 border-[1px] border-blue-500 p-2 rounded-lg'
+          %>
+          <%=
+            link_to 'Delete',
+                    article_path(article),
+                    data: {
+                      turbo_method: :delete,
+                      turbo_confirm: 'Are you sure?',
+                    },
+                    class: 'text-red-500 border-[1px] border-red-500 p-2 rounded-lg'
+          %>
+        <% end %>
+      </div>
+      <div>
+        <p class="text-sm text-gray-400">Created <%= time_ago_in_words(article.created_at) %> ago</p>
+        <p class="text-sm text-gray-400">
+          <%= "Edited #{time_ago_in_words(article.updated_at)} ago" if article.updated_at != article.created_at %>
+        </p>
+      </div>
+    </li>
+  <%end%>
+</ul>

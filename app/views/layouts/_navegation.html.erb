@@ -1,10 +1,35 @@
 <header class="flex items-center bg-black py-6 px-4">
-  <nav class="flex gap-5">
-    <p class="text-white text-2xl font-semibold"><%= link_to 'G.I. JOE BLOG', home_index_path %></p>
-    <ul class="flex gap-3 items-center text-white">
-      <li><%= link_to 'Articles', articles_path %></li>
-      <li>Articles</li>
-      <li>Articles</li>
-    </ul>
+  <nav class="w-full flex justify-between items-center gap-5">
+    <div class="flex items-center gap-5">
+      <p class="text-white text-2xl font-semibold"><%= link_to 'G.I. JOE BLOG', root_path %></p>
+      <ul class="flex gap-3 items-center text-white">
+        <li><%= link_to 'All Articles', articles_path %></li>
+        <% if logged_in? %>
+          <li><%= link_to 'New article', new_article_path %></li>
+        <% end %>
+        <li><%= link_to 'Bloggers', users_path %></li>
+        <li></li>
+      </ul>
+    </div>
+    <% if logged_in? %>
+      <ul class="flex items-center gap-5">
+        <li class="flex flex-col items-center justify-center">
+          <%= link_to current_user do %>
+            <div class="flex flex-col items-center">
+              <%= image_tag(gravatar(current_user, 40), alt: current_user.username, class: 'rounded-full') %>
+              <p class="text-white text-xs"><%= current_user.username %></p>
+            </div>
+          <% end %>
+        </li>
+        <li class="bg-red-500 p-1 rounded-lg text-sm">
+          <%= link_to 'Log out', logout_path, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %>
+        </li>
+      </ul>
+    <% else %>
+      <ul class="flex items-center gap-5">
+        <li class="bg-blue-500 text-white p-2 rounded-lg"><%= link_to 'Log in', login_path %></li>
+        <li class="underline text-white"><%= link_to 'Sing up', signup_path %></li>
+      </ul>
+    <% end %>
   </nav>
 </header>
