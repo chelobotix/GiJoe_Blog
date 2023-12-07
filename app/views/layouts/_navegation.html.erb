@@ -18,6 +18,7 @@
             <div class="flex flex-col items-center">
               <%= image_tag(gravatar(current_user, 40), alt: current_user.username, class: 'rounded-full') %>
               <p class="text-white text-xs"><%= current_user.username %></p>
+              <p class="text-white text-xs"><%= '(admin)' if current_user.admin %></p>
             </div>
           <% end %>
         </li>

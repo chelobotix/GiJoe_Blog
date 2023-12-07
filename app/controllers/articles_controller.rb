@@ -61,10 +61,9 @@ class ArticlesController < ApplicationController
 
   # require_same_user
   def require_same_user
-    unless current_user == @article.user
-      flash[:alert] = 'You cant edit this article'
+    if current_user != @article.user && !current_user.admin?
+      flash[:alert] = 'You can only edit your own article'
       redirect_to(@article)
-
     end
   end
 end
