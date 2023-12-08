@@ -13,10 +13,11 @@
  *= require_tree .
  *= require_self
  */
-@import 'will_paginate';
+@import "header";
+@import "will_paginate";
 
 .hero {
-  background-image: url('hero-bg.jpg');
+  background-image: url("hero-bg.jpg");
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -24,4 +25,10 @@
 
 .text-shadow {
   text-shadow: 3px 3px 2px black;
+}
+
+.center-f {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

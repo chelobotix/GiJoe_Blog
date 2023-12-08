@@ -1,0 +1,25 @@
+.header-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr auto 1fr;
+  gap: 5px;
+}
+
+.logo-area {
+  grid-column: span 2;
+}
+
+.articles-area {
+  grid-row: 2;
+  grid-column: 1 / 1;
+}
+
+.bloggers-area {
+  grid-row: 2;
+  grid-column: 2;
+}
+
+.user-area {
+  grid-row: 3;
+  grid-column: span 2;
+}
