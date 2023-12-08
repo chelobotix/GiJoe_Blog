@@ -1,19 +1,64 @@
-<header class="flex items-center bg-black py-6 px-4">
-  <nav class="w-full flex justify-between items-center gap-5">
-    <div class="flex items-center gap-5">
-      <p class="text-white text-2xl font-semibold"><%= link_to 'G.I. JOE BLOG', root_path %></p>
-      <ul class="flex gap-3 items-center text-white">
-        <li><%= link_to 'All Articles', articles_path %></li>
-        <% if logged_in? %>
-          <li><%= link_to 'New article', new_article_path %></li>
-        <% end %>
-        <li><%= link_to 'Bloggers', users_path %></li>
-        <li></li>
-      </ul>
+<header class="flex py-6 px-4 bg-gray-950">
+  <nav class="header-container w-full">
+    <div class="logo-area">
+      <%= link_to root_path do %>
+        <p class=" text-white text-3xl text-center font-semibold italic">
+          G.I. JOE <span class="text-red-500">BLOG</span>
+        </p>
+        <p class="text-blue-500 text-xs text-center font-bold">A Real American Hero</p>
+      <% end %>
     </div>
-    <% if logged_in? %>
-      <ul class="flex items-center gap-5">
-        <li class="flex flex-col items-center justify-center">
+
+    <div class="articles-area text-center">
+      <div class="relative inline-block text-left">
+        <div>
+          <button
+            type="button"
+            class="inline-flex w-full justify-center gap-x-1.5 text-sm font-semibold text-blue-400"
+            id="menu-button"
+            aria-expanded="true"
+            aria-haspopup="true"
+          >
+            Articles
+            <svg class="-mr-1 h-5 w-5 text-blue-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path
+                fill-rule="evenodd"
+                d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+                clip-rule="evenodd"
+              />
+            </svg>
+          </button>
+        </div>
+        <div
+          class="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 hidden"
+          role="menu"
+          aria-orientation="vertical"
+          aria-labelledby="menu-button"
+          tabindex="-1"
+          id="dropdown-menu"
+        >
+          <div class="py-1" role="none">
+            <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-0"
+              >All Articles</a
+            >
+            <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-1"
+              >New Article</a
+            >
+            <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-2"
+              >My Articles</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bloggers-area text-sm  text-center font-semibold text-blue-400">
+      <%= link_to 'Bloggers', users_path %>
+    </div>
+
+    <div class="user-area text-center">
+      <% if logged_in? %>
+        <div class="flex flex-col items-center justify-center">
           <%= link_to current_user do %>
             <div class="flex flex-col items-center">
               <%= image_tag(gravatar(current_user, 40), alt: current_user.username, class: 'rounded-full') %>
@@ -21,16 +66,18 @@
               <p class="text-white text-xs"><%= '(admin)' if current_user.admin %></p>
             </div>
           <% end %>
-        </li>
-        <li class="bg-red-500 p-1 rounded-lg text-sm">
-          <%= link_to 'Log out', logout_path, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %>
-        </li>
-      </ul>
-    <% else %>
-      <ul class="flex items-center gap-5">
-        <li class="bg-blue-500 text-white p-2 rounded-lg"><%= link_to 'Log in', login_path %></li>
-        <li class="underline text-white"><%= link_to 'Sing up', signup_path %></li>
-      </ul>
-    <% end %>
+          <div class="bg-red-500 p-1 rounded-lg text-sm">
+            <%= link_to 'Log out', logout_path, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %>
+          </div>
+        </div>
+      <% else %>
+        <div class="flex flex-col items-center gap-1">
+          <p class="bg-blue-500 text-white px-2 py-1 rounded-lg"><%= link_to 'Log in', login_path %></p>
+          <p class="underline text-white"><%= link_to 'Sing up', signup_path %></p>
+        </div>
+      <% end %>
+    </div>
   </nav>
 </header>
+
+<%= javascript_include_tag('navegation.js') %>
