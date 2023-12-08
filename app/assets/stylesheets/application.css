@@ -16,6 +16,34 @@
 @import "header";
 @import "will_paginate";
 
+@font-face {
+  font-family: "metal";
+  src: url("metal") format("opentype");
+}
+
+@font-face {
+  font-family: "action";
+  src: url("action") format("truetype");
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body {
+  font-weight: 100;
+}
+
+.poto {
+  background-color: #926f17;
+  font-family: "metal";
+  border: 2px solid #000000;
+}
+
 .hero {
   background-image: url("hero-bg.jpg");
   background-position: center center;
