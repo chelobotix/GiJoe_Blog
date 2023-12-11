@@ -1,25 +1,54 @@
-<%= render "shared/errors", obj: @user%>
-
+<%= render 'shared/errors', obj: @user %>
 
 <div class="flex justify-center items-center w-10/12">
   <%= form_with model: @user, class: "w-10/12 flex flex-col items-center gap-3" do |f|%>
     <div class="flex justify-center items-center">
       <%= f.label :username, class: 'w-40' %>
-      <%= f.text_field :username, placeholder: "Enter a username", class: 'w-50' %>
+      <%= f.text_field :username, placeholder: 'Enter a username', class: 'w-50' %>
     </div>
 
     <div class="flex justify-center items-center">
       <%= f.label :email, class: 'w-40' %>
-      <%= f.email_field :email, placeholder: "Enter an email", class: 'w-50' %>
+      <%= f.email_field :email, placeholder: 'Enter an email', class: 'w-50' %>
     </div>
 
     <div class="flex justify-center items-center">
       <%= f.label :password, class: 'w-40' %>
-      <%= f.password_field :password, placeholder: "Choose a password", class: 'w-50' %>
+      <%= f.password_field :password, placeholder: 'Choose a password', class: 'w-50' %>
     </div>
 
+    <label for="G.I. Joe">
+      <input
+        type="radio"
+        name="faction"
+        id="G.I. Joe"
+        value="G.I. Joe"
+        onclick="document.getElementById('factionField').value = this.value"
+        checked
+      />
+      <%= image_tag 'gijoe.png', alt: 'Cobra', class: 'w-40' %>
+    </label>
+
+    <label for="Cobra">
+      <input
+        type="radio"
+        name="faction"
+        id="Cobra"
+        value="Cobra"
+        onclick="document.getElementById('factionField').value = this.value"
+      />
+      <%= image_tag 'cobra.png', alt: 'Cobra', class: 'w-40' %>
+    </label>
+
+    <%= f.hidden_field :faction, id: 'factionField' %>
+
     <div class="flex justify-center items-center">
-      <%= f.submit(@user.new_record? ? "Sign up": "Update Account", class: 'px-5 py-3 bg-blue-600 text-white rounded-lg border-[1px] border-white') %>
+      <%=
+        f.submit(
+          @user.new_record? ? 'Sign up' : 'Update Account',
+          class: 'px-5 py-3 bg-blue-600 text-white rounded-lg border-[1px] border-white',
+        )
+      %>
     </div>
   <%end%>
 </div>
