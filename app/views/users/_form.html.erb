@@ -1,23 +1,18 @@
 <%= render 'shared/errors', obj: @user %>
 
 <div class="flex justify-center items-center w-full py-4">
-  <%= form_with model: @user, class: "w-10/12 flex flex-col items-center gap-3" do |f|%>
-    <div class="flex justify-center items-center">
+  <%= form_with model: @user, class: "w-10/12 flex flex-col items-center gap-6" do |f|%>
+
       <%= f.text_field :username, placeholder: 'Username', class: 'w-40 border-[1px] border-blue-500 rounded-lg p-1' %>
-    </div>
 
-    <div class="flex justify-center items-center">
       <%= f.email_field :email, placeholder: 'Email', class: 'w-40 border-[1px] border-blue-500 rounded-lg p-1' %>
-    </div>
 
-    <div class="flex justify-center items-center">
       <%=
         f.password_field :password, placeholder: 'Password', class: 'w-40 border-[1px] border-blue-500 rounded-lg p-1'
       %>
-    </div>
 
     <div class="center-f-col bg-white rounded-md border-[1px] border-blue-500 p-1">
-        <label for="G.I. Joe">
+        <label for="G.I. Joe"/>
           <input
             type="radio"
             name="faction"
@@ -27,7 +22,7 @@
             checked
           />
           <%= image_tag 'gijoe.png', alt: 'Cobra', class: 'w-40' %>
-        </label>
+        </label/>
 
         <label for="Cobra">
           <input
@@ -42,13 +37,12 @@
 
     <%= f.hidden_field :faction, id: 'factionField' %>
 
-    <div class="flex justify-center items-center">
-      <%=
-        f.submit(
-          @user.new_record? ? 'Sign up' : 'Update Account',
-          class: 'px-5 py-2 bg-blue-600 text-white rounded-lg border-[1px] border-white',
-        )
-      %>
-    </div>
+    <%=
+      f.submit(
+        @user.new_record? ? 'Sign up' : 'Update Account',
+        class: 'px-5 py-2 bg-blue-600 text-white rounded-lg border-[1px] border-white',
+      )
+    %>
+
   <%end%>
 </div>

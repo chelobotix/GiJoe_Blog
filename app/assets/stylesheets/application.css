@@ -65,6 +65,12 @@ body {
 
 .signup {
   background-image: url(signup-banner.jpg);
-  background-position: -60px -106px;
+  background-position: -82px -106px;
+  background-repeat: no-repeat;
+}
+
+.login {
+  background-image: url(login-banner.jpg);
+  background-position: -82px 0;
   background-repeat: no-repeat;
 }
