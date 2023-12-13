@@ -2,7 +2,7 @@
   <h2 class="text-white text-shadow font-semibold text-4xl">Log in</h2>
 
   <div class="flex justify-center items-center w-10/12">
-    <%= form_with scope: :session, url: login_path, class: "w-10/12 flex flex-col items-center gap-6", local: true do |f|%>
+    <%= form_with scope: :session, url: login_path, data: { turbo: false }, class: "w-10/12 flex flex-col items-center gap-6", local: true do |f|%>
       <%=
         f.email_field :email,
                       placeholder: 'Email',
