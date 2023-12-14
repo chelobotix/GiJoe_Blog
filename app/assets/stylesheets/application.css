@@ -50,6 +50,10 @@ body {
   text-shadow: 3px 3px 2px black;
 }
 
+.text-shadow-blue {
+  text-shadow: 1px 1px 1px blue;
+}
+
 .center-f {
   display: flex;
   align-items: center;
@@ -73,4 +77,23 @@ body {
   background-image: url(login-banner.jpg);
   background-position: -82px 0;
   background-repeat: no-repeat;
+}
+
+.users {
+  background-image: url("./images/factory.jpg");
+  background-size: cover;
+
+  background-repeat: no-repeat;
+}
+
+.cobraBg {
+  background-image: url("./images/cobra-profile.jpg");
+  background-position: center;
+  background-size: cover;
+}
+
+.gijoeBg {
+  background-image: url("./images/gijoe-profile.jpg");
+  background-position: top;
+  background-size: cover;
 }

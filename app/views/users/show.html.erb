@@ -1,18 +1,22 @@
-<section class="flex flex-col items-center gap-5 py-5">
-  <h2 class="text-indigo-600 text-4xl">User Profile</h2>
+<section class="flex flex-col items-center gap-5 py-5 <%= gijoe?(@user) ? 'gijoeBg' : 'cobraBg' %>">
+  <h2 class="text-red-700 text-shadow-blue font-semibold text-5xl text-center truncate">
+    <%= @user.username.capitalize %><br /><span class="text-red-700 text-shadow-blue font-semibold text-xl text-center">
+      <%= gijoe?(@user) ? 'G.I. Joe' : 'Cobra' %>
+    </span>
+  </h2>
 
-  <%= image_tag(gravatar(@user, 200), alt: @user.username, class: 'rounded-md') %>
-  <p>Username: <%= @user.username %></p>
-  <p>Email: <%= @user.email %></p>
+  <%= image_tag(gravatar(@user, 200), alt: @user.username, class: 'rounded-md border-2 border-white') %>
+  <p class="<%= gijoe?(@user) ? 'text-red-700 text-bold' : 'text-white' %> text-center truncate w-11/12">
+    <%= @user.email %>
+  </p>
   <% if logged_in? && current_user == @user %>
-    <p>
+    <div class="flex flex-col gap-3">
       <%=
         link_to 'Edit Profile',
                 edit_user_path(@user),
-                class: 'text-blue-500 border-[1px] border-blue-500 p-2 rounded-lg'
+                class: 'text-white text-center border-[2px] border-white bg-blue-500 p-2 rounded-lg'
       %>
-    </p>
-    <p>
+
       <%=
         link_to 'Delete Profile',
                 user_path(@user),
@@ -20,12 +24,12 @@
                   turbo_method: :delete,
                   turbo_confirm: 'Are you sure?',
                 },
-                class: 'text-red-500 border-[1px] border-red-500 p-2 rounded-lg'
+                class: 'text-white text-center border-[2px] border-white bg-red-500 p-2 rounded-lg'
       %>
-    </p>
+    </div>
   <% end %>
 
-  <h2 class="text-indigo-600 text-4xl">Articles</h2>
+  <h2 class="text-white text-shadow font-semibold text-2xl text-center">Articles</h2>
   <%= render 'articles/article' %>
 
   <div class="flickr_pagination">
