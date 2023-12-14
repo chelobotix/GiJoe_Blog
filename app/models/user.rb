@@ -9,6 +9,7 @@ class User < ApplicationRecord
             uniqueness: { case_sensitive: false },
             length: { maximum: 100 },
             format: { with: VALID_EMAIL_REGEX }
+  validates :faction, presence: true
 
   has_many :articles, dependent: :destroy
 

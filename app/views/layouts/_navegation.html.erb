@@ -43,12 +43,6 @@
             </svg>
             <span class="sr-only">Search icon</span>
           </div>
-          <input
-            type="text"
-            id="search-navbar"
-            class="block w-full p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            placeholder="Search..."
-          />
         </div>
         <button
           data-collapse-toggle="navbar-search"
@@ -172,9 +166,9 @@
             %>
           </li>
 
-          <div class="user-area text-center">
+          <div class="user-area text-center border-t-[1px] border-gray-300 pt-5">
             <% if logged_in? %>
-              <div class="flex flex-col items-center justify-center">
+              <div class="flex flex-col items-center justify-center ">
                 <%= link_to current_user do %>
                   <div class="flex flex-col items-center">
                     <%= image_tag(gravatar(current_user, 40), alt: current_user.username, class: 'rounded-full ring') %>
@@ -187,19 +181,18 @@
                 </div>
               </div>
             <% else %>
-              <div class="flex flex-col items-center gap-1">
-                <p class="bg-blue-500 text-white px-2 py-1 rounded-lg">
+              <div class="flex flex-col items-center gap-2">
+                <p class="bg-blue-500 text-white px-2 py-1 rounded-lg text-xl">
                   <%= link_to 'Log in', login_path %>
                 </p>
-                <p class="underline text-white"><%= link_to 'Sing up', signup_path %></p>
+                <p class="text-sm text-white p-1 rounded-lg bg-red-500">
+                  <%= link_to 'Sing up', signup_path %>
+                </p>
               </div>
             <% end %>
           </div>
-          <li>Blogers</li>
         </ul>
       </div>
     </div>
   </nav>
 </header>
-
-<%= javascript_include_tag('navegation.js') %>

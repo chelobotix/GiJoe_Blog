@@ -39,12 +39,6 @@ body {
   font-family: "Lora", serif;
 }
 
-.poto {
-  background-color: #926f17;
-  font-family: "metal";
-  border: 2px solid #000000;
-}
-
 .hero {
   background-image: url("hero-bg.jpg");
   background-position: center center;
@@ -56,8 +50,50 @@ body {
   text-shadow: 3px 3px 2px black;
 }
 
+.text-shadow-blue {
+  text-shadow: 1px 1px 1px blue;
+}
+
 .center-f {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.center-f-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.signup {
+  background-image: url(signup-banner.jpg);
+  background-position: -82px -106px;
+  background-repeat: no-repeat;
+}
+
+.login {
+  background-image: url(login-banner.jpg);
+  background-position: -82px 0;
+  background-repeat: no-repeat;
+}
+
+.users {
+  background-image: url("./images/factory.jpg");
+  background-size: cover;
+
+  background-repeat: no-repeat;
+}
+
+.cobraBg {
+  background-image: url("./images/cobra-profile.jpg");
+  background-position: center;
+  background-size: cover;
+}
+
+.gijoeBg {
+  background-image: url("./images/gijoe-profile.jpg");
+  background-position: top;
+  background-size: cover;
 }

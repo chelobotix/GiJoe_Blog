@@ -16,15 +16,15 @@
 
     <%= stylesheet_link_tag 'tailwind', 'data-turbo-track': 'reload' %>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.turbo.min.js"></script>
-
     <%= stylesheet_link_tag 'application', 'data-turbo-track': 'reload' %>
     <%= javascript_importmap_tags %>
   </head>
 
   <body>
     <%= render 'layouts/navegation' %>
-    <%= render 'layouts/messages' %>
+    <div class="w-full flex justify-center p-1 absolute">
+      <%= render 'layouts/messages' %>
+    </div>
     <%= yield %>
     <%= render 'layouts/footer' %>
   </body>

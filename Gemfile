@@ -69,7 +69,7 @@ gem 'rubocop', '~> 1.57', '>= 1.57.2'
 gem 'rubocop-rails', '~> 2.22', '>= 2.22.1'
 
 # byebug
-gem 'byebug', '~> 11.1', '>= 11.1.3'
+# gem 'byebug', '~> 11.1', '>= 11.1.3'
 
 # will_paginate
 gem 'will_paginate', '~> 3.1', '>= 3.1.6'
