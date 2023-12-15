@@ -35,3 +35,6 @@ Style/GuardClause:
 
 Style/MissingElse:
   Enabled: false
+
+Metrics/BlockLength:
+  Enabled: false

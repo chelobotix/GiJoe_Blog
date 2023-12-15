@@ -16,7 +16,7 @@ describe Category do
 
   it 'Name should be unique' do
     @category.save!
-    @category2 = Category.new(name: 'Sport')
+    @category2 = Category.new(name: 'Sports')
     assert_not @category2.valid?
   end
 
