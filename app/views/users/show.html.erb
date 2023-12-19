@@ -5,7 +5,7 @@
     </span>
   </h2>
 
-  <%= image_tag(gravatar(@user, 200), alt: @user.username, class: 'rounded-md border-2 border-white') %>
+  <%= image_tag(@user.avatar, alt: @user.username, class: 'rounded-md border-2 border-white') %>
   <p class="<%= gijoe?(@user) ? 'text-red-700 text-bold' : 'text-white' %> text-center truncate w-11/12">
     <%= @user.email %>
   </p>
@@ -30,7 +30,13 @@
   <% end %>
 
   <h2 class="text-white text-shadow font-semibold text-2xl text-center">Articles</h2>
-  <%= render 'articles/article' %>
+  <% if @user.articles.any? %>
+    <% @user.articles.each do |article| %>
+      <%= render 'articles/article', article: article %>
+    <% end %>
+  <% else %>
+    <p class="text-white">No Articles yet</p>
+  <% end %>
 
   <div class="flickr_pagination">
     <%= will_paginate @articles, container: false %>

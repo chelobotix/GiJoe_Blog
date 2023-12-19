@@ -2,12 +2,26 @@
 @tailwind components;
 @tailwind utilities;
 
-/*
-
-@layer components {
-  .btn-primary {
-    @apply py-2 px-4 bg-blue-200;
-  }
+.btn-blue {
+  @apply text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg;
 }
 
-*/
+.btn-indigo {
+  @apply text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:ring-indigo-300 font-medium rounded-lg;
+}
+
+.btn-red {
+  @apply text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg;
+}
+
+.btn-green {
+  @apply text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg;
+}
+
+.btn-normal {
+  @apply text-sm px-5 py-2.5 mb-2;
+}
+
+.btn-small {
+  @apply text-xs px-2 py-2 mb-2;
+}

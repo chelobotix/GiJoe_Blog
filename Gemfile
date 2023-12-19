@@ -75,3 +75,5 @@ gem 'byebug', '~> 11.1', '>= 11.1.3'
 gem 'will_paginate', '~> 3.1', '>= 3.1.6'
 
 gem 'minitest-rails', '~> 7.1.0'
+
+gem 'faker', '~> 3.2'

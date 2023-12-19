@@ -1,6 +1,7 @@
 <section class="flex justify-center gap-5 py-5">
   <article class="w-10/12 bg-gray-200 rounded-md p-5 flex flex-col items-center justify-center gap-5">
-    <h2 class="text-indigo-600 text-4xl"><%= @article.title %></h2>
+    <h2 class="text-indigo-600 text-4xl text-center"><%= @article.title %></h2>
+    <%= image_tag("/images/#{@article.photo}", class: 'w-56 rounded-lg') %>
     <div class="flex">
       <% @article.categories.each do |category|  %>
         <%= link_to category_path(category) do%>
@@ -13,8 +14,8 @@
 
     <%= link_to @article.user do%>
       <div class="flex flex-col items-center">
-        <%= image_tag(gravatar(@article.user, 50), alt: @article.user.username, class: 'rounded-md') %>
-        <p>By: <%= @article.user.username.capitalize %></p>
+        <%= image_tag(@article.user.avatar, alt: @article.user.username, class: 'rounded-md w-20') %>
+        <p class="text-blue-500">By: <%= @article.user.username.capitalize %></p>
       </div>
     <% end %>
 

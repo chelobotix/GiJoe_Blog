@@ -217,10 +217,10 @@
 
           <div class="user-area text-center border-t-[1px] border-gray-300 pt-5">
             <% if logged_in? %>
-              <div class="flex flex-col items-center justify-center ">
+              <div class="flex flex-col items-center justify-center gap-2 ">
                 <%= link_to current_user do %>
                   <div class="flex flex-col items-center">
-                    <%= image_tag(gravatar(current_user, 40), alt: current_user.username, class: 'rounded-full ring') %>
+                    <%= image_tag(current_user.avatar, alt: current_user.username, class: 'w-10 rounded-full ring') %>
                     <p class="text-blue-500 text-xs"><%= current_user.username %></p>
                     <p class="text-white text-xs"><%= '(admin)' if current_user.admin %></p>
                   </div>
