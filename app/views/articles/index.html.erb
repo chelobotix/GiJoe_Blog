@@ -1,10 +1,13 @@
 <section class="flex flex-col gap-5 items-center py-5">
   <h2 class="text-indigo-600 text-4xl">Articles</h2>
-    <%= render "article" %>
+  <ul class="flex flex-col gap-10 items-center w-10/12">
+    <% @articles.each do |article|%>
+      <%= render 'article', article: article %>
+    <%end%>
+  </ul>
   <p><%= link_to 'Create new article', new_article_path %></p>
 
-    <div class="flickr_pagination">
-      <%= will_paginate @articles, :container => false %>
-    </div>
-
+  <div class="flickr_pagination">
+    <%= will_paginate @articles, container: false %>
+  </div>
 </section>

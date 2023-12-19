@@ -1,0 +1,13 @@
+<section class="flex flex-col gap-5 items-center py-5">
+  <h2 class="text-indigo-600 text-4xl">Categories</h2>
+  <ul class="flex flex-col gap-10 items-center w-10/12">
+    <% @categories.each do |category|%>
+      <%= render 'category', category: category %>
+    <%end%>
+  </ul>
+  <p><%= link_to 'Create new category', new_category_path %></p>
+
+  <div class="flickr_pagination">
+    <%= will_paginate @categories, container: false %>
+  </div>
+</section>
