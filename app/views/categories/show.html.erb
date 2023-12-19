@@ -1,5 +1,35 @@
 <section class="flex justify-center gap-5 py-5">
   <article class="w-10/12 bg-gray-200 rounded-md p-5 flex flex-col items-center justify-center gap-5">
     <h2 class="text-indigo-600 text-4xl"><%= @category.name %></h2>
-  </article>
+
+    <% if logged_in? && current_user.admin? %>
+    <div class="flex flex-col gap-3">
+      <%=
+        link_to 'Edit Category',
+                edit_category_path(@category),
+                class: 'text-white text-center border-[2px] border-white bg-blue-500 p-2 rounded-lg'
+      %>
+
+      <%=
+        link_to 'Delete Category',
+                category_path(@category),
+                data: {
+                  turbo_method: :delete,
+                  turbo_confirm: 'Are you sure?',
+                },
+                class: 'text-white text-center border-[2px] border-white bg-red-500 p-2 rounded-lg'
+      %>
+    </div>
+  <% end %>
+
+  <h2 class="text-white text-shadow font-semibold text-2xl text-center">Articles</h2>
+  <ul class="flex flex-col gap-10 items-center w-10/12">
+    <% @articles.each do |article|%>
+      <%= render 'articles/article', article: article %>
+    <%end%>
+  </ul>
+
+  <div class="flickr_pagination">
+    <%= will_paginate @articles, container: false %>
+  </div>
 </section>

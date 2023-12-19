@@ -1,11 +1,20 @@
 <section class="flex justify-center gap-5 py-5">
   <article class="w-10/12 bg-gray-200 rounded-md p-5 flex flex-col items-center justify-center gap-5">
     <h2 class="text-indigo-600 text-4xl"><%= @article.title %></h2>
+    <div class="flex">
+      <% @article.categories.each do |category|  %>
+        <%= link_to category_path(category) do%>
+          <span
+            class="bg-blue-100 hover:bg-blue-200 text-blue-800 text-xs font-semibold me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400 inline-flex items-center justify-center"
+          ><%= category.name %></span>
+        <% end  %>
+      <% end  %>
+    </div>
 
     <%= link_to @article.user do%>
       <div class="flex flex-col items-center">
         <%= image_tag(gravatar(@article.user, 50), alt: @article.user.username, class: 'rounded-md') %>
-        <p>By: <%= @article.user.username %></p>
+        <p>By: <%= @article.user.username.capitalize %></p>
       </div>
     <% end %>
 

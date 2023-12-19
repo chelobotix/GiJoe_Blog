@@ -1,13 +1,10 @@
-<ul class="flex flex-col gap-10 items-center w-10/12">
-  <% @categories.each do |category|%>
-    <li class="bg-slate-200  rounded drop-shadow-xl w-full p-5 flex flex-col items-center justify-center ring max-w-lg">
-      <%= link_to category.name, category_path(category), class: 'text-blue-500 text-2xl' %>
-      <div>
-        <p class="text-sm text-gray-400">Created <%= time_ago_in_words(category.created_at) %> ago</p>
-        <p class="text-sm text-gray-400">
-          <%= "Edited #{time_ago_in_words(category.updated_at)} ago" if category.updated_at != category.created_at %>
-        </p>
-      </div>
-    </li>
-  <%end%>
-</ul>
+<li class="bg-slate-200  rounded drop-shadow-xl w-full p-5 flex flex-col items-center justify-center ring max-w-lg">
+  <%= link_to category.name, category_path(category), class: 'text-blue-500 text-2xl' %>
+  <div class="flex flex-col items-center">
+    <p class="text-sm text-indigo-400"><%= pluralize(category.articles.count, 'article') %></p>
+    <p class="text-sm text-gray-400">Created <%= time_ago_in_words(category.created_at) %> ago</p>
+    <p class="text-sm text-gray-400">
+      <%= "Edited #{time_ago_in_words(category.updated_at)} ago" if category.updated_at != category.created_at %>
+    </p>
+  </div>
+</li>
