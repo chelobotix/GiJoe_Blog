@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   resources :articles
 
-  resources :categories, except: [:destroy]
+  resources :categories
 
   get 'signup', to: "users#new"
   resources :users, except: [:new]
